@@ -1,89 +1,89 @@
-from tkinter import *
+from tkinter import *              
 import tkinter.font as font
 
 root = Tk()
-root.title("Simple Calculator")
-myFont = font.Font(family="calibri",size=20,weight="bold")
-e = Entry(root,width=25,borderwidth=5,font=myFont,justify="right")
+root.title("Simple Calculator")                                     # title must be Simple Calculator
+myFont = font.Font(family="calibri",size=20,weight="bold")          # generate a font
+e = Entry(root,width=25,borderwidth=5,font=myFont,justify="right")  # create the entry
 
-e.grid(row=0,column=0,columnspan=3,padx=10,pady=10,)
+e.grid(row=0,column=0,columnspan=3,padx=10,pady=10,)        # position the entry
 global identifier
-identifier = ""
-def type_checker(data):
+identifier = ""                                     # identifier must globally declare to determine what operation you want to do
+def type_checker(data):                    #check if it is not int then convert to float 
     if type(data) is not int:
         return float(data)
-def AddNum(number):
-        current = e.get()# 10
-        e.delete(0,END)
-        e.insert(0,str(current)+str(number))
+def AddNum(number):                     # add the number in the entry
+        current = e.get()# 10           # get all the value in the entry
+        e.delete(0,END)                 # delete all in the entry
+        e.insert(0,str(current)+str(number))    # insert the number in the entry in the position 0 and concatenate it in current
 
-def Num_Clear():
+def Num_Clear():        # just clear the number in the entry
     e.delete(0,END)
 
-def Button_Add(first_number):
-    if len(e.get())==0:
+def Button_Add(first_number):       # adding the number
+    if len(e.get())==0:         # check if the entry length is equal to zero then you cant go to this function
         return
     try:
-        first_number = int(first_number)
+        first_number = int(first_number)    # check if it is integer
     except:
-        first_number = type_checker(first_number)
+        first_number = type_checker(first_number)  # if it is not an integer change it to float
 
-    e.delete(0,END)
-    global f_num
+    e.delete(0,END)         #delete all character in the entry
+    global f_num            # declare f_num globally so that you can use to other function and change it if necessary 
     f_num = first_number
-    global identifier
+    global identifier       # since the identifier is globally declare change  it to addition
     identifier="+"
 
-def Num_Sub(first_number):
-    if len(e.get())==0:
+def Num_Sub(first_number):    # subtract the number
+    if len(e.get())==0:      # check if the entry length is equal to zero then you cant go to this function
         return
     try:
-        first_number = int(first_number)
+        first_number = int(first_number)         # check if it is integer
     except:
-        first_number = type_checker(first_number)
+        first_number = type_checker(first_number)   # if it is not an integer change it to float
 
-    e.delete(0,END)
-    global f_num
+    e.delete(0,END)         #delete all character in the entry
+    global f_num            # since the f_num is globally declare then change it to the first_number
     f_num = first_number
-    global identifier
+    global identifier   # since the identifier is globally declare change  it to subtraction
     identifier = "-"
-def Num_Mul(first_number):
-    if len(e.get())==0:
+def Num_Mul(first_number):  # multiplication the number
+    if len(e.get())==0:     # check if the entry length is equal to zero then you cant go to this function
         return
     try:
-        first_number = int(first_number)
+        first_number = int(first_number)    # check if it is integer
     except:
-        first_number = type_checker(first_number)
+        first_number = type_checker(first_number)        # if it is not an integer change it to float
 
-    e.delete(0,END)
-    global f_num
+    e.delete(0,END)         # delete all the character in the entry
+    global f_num            # since the f_num is globally declare then change it to the first_number
     f_num = first_number
-    global identifier
+    global identifier       # since the identifier is globally declare change  it to multiplication
     identifier = "*"
 
-def Num_Div(first_number):
-    if len(e.get()) == 0:
+def Num_Div(first_number): # divide the number
+    if len(e.get()) == 0:       # check if the length is equal to zero
         return
     try:
-        first_number = int(first_number)
+        first_number = int(first_number)    # check if it is integer
     except:
-        first_number = type_checker(first_number)
+        first_number = type_checker(first_number) # convert to float
 
-    e.delete(0,END)
-    global f_num
+    e.delete(0,END)     # delete all the charater in the entry
+    global f_num            # change the f_num value 
     f_num = first_number
-    global identifier
+    global identifier       # change the identifier to division
     identifier="/"
 
-def Num_Equal():
+def Num_Equal():            
     print(identifier)
     if identifier =="+":
         try:
-            second_number = int(e.get())
+            second_number = int(e.get())        //check if the second number is int
         except:
-            second_number = type_checker(e.get())
-        e.delete(0,END)
-        e.insert(0,f_num+second_number)
+            second_number = type_checker(e.get())   // convert second number to float
+        e.delete(0,END)                             // delete all character in the entry
+        e.insert(0,f_num+second_number)             // add f_num and second number then this procedure apply to all operation 
     elif identifier =="-":
         try:
             second_number = int(e.get())
