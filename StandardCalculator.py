@@ -4,35 +4,35 @@ import tkinter.font as font
 root = Tk()
 root.title("Standard Calculator")
 root.configure(bg="black")
-def OnClick(number):
-    global operator
-    symbol = ['+', '-', '*', "/"]
-    if len(operator) == 0 and number ==0:
+def OnClick(number):  
+    global operator         # declare operator globally
+    symbol = ['+', '-', '*', "/"]       # list of operation    
+    if len(operator) == 0 and number ==0:       #check the  operator has 0 length and the number you click is zero
         return
-    if number in symbol and len(operator)==0:
+    if number in symbol and len(operator)==0:    # check if the number is in symbol but length is equal to zero   
         return
-    if number in symbol and operator[-1] in symbol:
+    if number in symbol and operator[-1] in symbol: # check the last element is in symbol and the current number is symbol
         return
-    operator = operator +str(number)
-    text_input.set(operator)
+    operator = operator +str(number)            #concatenate all the operator and number
+    text_input.set(operator)        #set operator in the StringVar 
 
-def ClearBtn():
-    global operator
+def ClearBtn():         # just clear the all value in the StringVar
+    global operator     # operator will remove all the value
     operator=""
-    text_input.set("")
+    text_input.set("") # back to zero input in the StringVar
 
 
-def EqualBtn():
+def EqualBtn():         # this process will execute the operation
     global operator
     try :
-        sumup = str(eval(operator))
-        text_input.set(sumup)
+        sumup = str(eval(operator)) # check if the operator can evaluate and change to string
+        text_input.set(sumup)       # it will set the value in StringVar 
     except:
-        text_input.set("Syntax Error")
-    finally:
+        text_input.set("Syntax Error") # if the try is error then the StringVar will set to Syntax error
+    finally:            
         global holder
         holder = operator
-        operator=""
+        operator="" # it will clear the operator
 
 
 
